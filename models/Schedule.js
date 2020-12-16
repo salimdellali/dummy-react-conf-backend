@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 
-const ScheduleSchema = mongoose.Schema({
-    description: String,
-    sessions: [{
-        _id: String,
-        time: String,
-        description: String,
-        speakers: [String]
-    }]
-});
+const ScheduleSchema = mongoose.Schema(
+	{
+		description: String,
+		sessions: [
+			{
+				_id: Number,
+				time: { type: String, required: true },
+				description: { type: String, required: true },
+				speakers: [String],
+			},
+		],
+	},
+	{ collection: 'schedules' }
+);
 
-module.exports = mongoose.model('Schedules', ScheduleSchema);
+module.exports = mongoose.model('Schedule', ScheduleSchema);
