@@ -1,8 +1,7 @@
 // import npm packages
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv/config');
+require('./database');
 
 // Init app
 const app = express();
@@ -25,15 +24,6 @@ app.use('/api/attendees', attendeesRoute);
 // test if / route works
 app.get('/', (req, res) => {
 	res.send('we are on root');
-});
-
-// Database Setup
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useCreateIndex', true);
-mongoose.connect(process.env.DB_CONNECTION, (err) => {
-	if (err) throw err;
-	console.log('Connected to DB successfully');
 });
 
 // set PORT to listen to
