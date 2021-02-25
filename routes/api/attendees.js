@@ -3,18 +3,61 @@ const express = require('express');
 const router = express.Router();
 const Attendee = require('../../models/Attendee');
 
-// Get all attendees
+/**
+ * @route	GET api/attendees
+ * @desc	Get all attendees
+ * @access	Public
+ */
 router.get('/', (req, res) => {
-	console.log('Getting all attendees ...');
-	Attendee.find({})
+	Attendee.find()
 		.exec()
 		.then((attendee) => {
-			console.log(attendee);
 			res.json(attendee);
 		})
 		.catch((err) => {
 			res.json({ message: 'error has occured : ' + err });
 		});
+});
+
+/**
+ * @route POST api/attendees
+ * @desc Add new attendee
+ * @desc Public
+ */
+router.post('/', (req, res) => {
+	const newAttendee = new Attendee(JSON.parse(JSON.stringify(req.body)));
+	newAttendee.save().then((attendee) => res.json(attendee));
+});
+
+/**
+ * @route PUT api/attendees
+ * @desc Update attendee
+ * @desc Public
+ */
+router.put('/', (req, res) => {
+	// const updatedAttendee = new Attendee(JSON.parse(JSON.stringify(req.body)));
+	// updatedAttendee.save().then((attendee) => res.json(attendee));
+	Attendee.findOneAndUpdate({ _id: req.body._id }, req.body)
+		.exec()
+		.then((attendee) => {
+			res.json(attendee);
+		})
+		.catch((err) => {
+			res.json({ message: 'error has occured : ' + err });
+		});
+});
+
+/**
+ * @route DELETE api/attendees
+ * @desc Delete attendee
+ * @desc Public
+ */
+router.delete('/:id', (req, res) => {
+	Attendee.findById(req.params.id)
+		.then((attendee) =>
+			attendee.remove().then(() => res.json({ success: true }))
+		)
+		.catch((err) => res.status(404).json({ success: false }));
 });
 
 module.exports = router;
