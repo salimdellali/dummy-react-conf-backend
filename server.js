@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+require('dotenv/config');
 require('./database');
 
 // Init app
@@ -15,12 +16,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // import routes and use routes as middlewares
-const speakersRoute = require('./routes/api/speakers');
-const schedulesRoute = require('./routes/api/schedules');
-const attendeesRoute = require('./routes/api/attendees');
-app.use('/api/speakers', speakersRoute);
-app.use('/api/schedules', schedulesRoute);
-app.use('/api/attendees', attendeesRoute);
+app.use('/api/speakers', require('./routes/api/speakers'));
+app.use('/api/schedules', require('./routes/api/schedules'));
+app.use('/api/attendees', require('./routes/api/attendees'));
+
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 // test if / route works
 // app.get('/', (req, res) => {

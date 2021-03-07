@@ -1,6 +1,9 @@
 // import npm packages
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
+
+// User Model
 const Attendee = require('../../models/Attendee');
 
 /**
@@ -32,9 +35,9 @@ router.post('/', (req, res) => {
 /**
  * @route PUT api/attendees
  * @desc Update attendee
- * @desc Public
+ * @desc PRIVATE
  */
-router.put('/', (req, res) => {
+router.put('/', auth, (req, res) => {
 	// const updatedAttendee = new Attendee(JSON.parse(JSON.stringify(req.body)));
 	// updatedAttendee.save().then((attendee) => res.json(attendee));
 	Attendee.findOneAndUpdate({ _id: req.body._id }, req.body)
@@ -50,9 +53,9 @@ router.put('/', (req, res) => {
 /**
  * @route DELETE api/attendees
  * @desc Delete attendee
- * @desc Public
+ * @desc PRIVATE
  */
-router.delete('/:id', (req, res) => {
+router.delete('/:id', auth, (req, res) => {
 	Attendee.findById(req.params.id)
 		.then((attendee) =>
 			attendee.remove().then(() => res.json({ success: true }))

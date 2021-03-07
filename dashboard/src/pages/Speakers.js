@@ -139,6 +139,7 @@ function Speakers(props) {
 				color="primary"
 				className={classes.button}
 				startIcon={<AddCircleIcon />}
+				disabled={props.userName !== 'admin' ? true : false}
 			>
 				Add New Speaker
 			</Button>
@@ -166,13 +167,17 @@ function Speakers(props) {
 								<StyledTableRow key={speaker._id}>
 									<StyledTableCell>
 										<Tooltip title="Edit" placement="left-end">
-											<IconButton aria-label="edit">
+											<IconButton
+												aria-label="edit"
+												disabled={props.userName !== 'admin' ? true : false}
+											>
 												<EditIcon />
 											</IconButton>
 										</Tooltip>
 										<Tooltip title="Delete" placement="left-end">
 											<IconButton
 												aria-label="delete"
+												disabled={props.userName !== 'admin' ? true : false}
 												onClick={() =>
 													handleDeleteSpeaker(
 														speaker._id,
@@ -221,11 +226,14 @@ function Speakers(props) {
 
 Speakers.propTypes = {
 	getSpeakers: PropTypes.func.isRequired,
+	deleteSpeaker: PropTypes.func.isRequired,
 	speaker: PropTypes.object.isRequired,
+	userName: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
 	speaker: state.speaker,
+	userName: state.auth.user.name,
 });
 
 export default connect(mapStateToProps, { getSpeakers, deleteSpeaker })(

@@ -19,22 +19,22 @@ const AttendeeSchema = mongoose.Schema(
 		foodOptions: {
 			breakfast: {
 				type: String,
-				enum: ['Classic', 'English', 'No preference'],
+				enum: ['Classic', 'English', 'No Preference'],
 				required: true,
 			},
 			snacks: {
 				type: String,
-				enum: ['Healthy', 'Regular', 'No preference'],
+				enum: ['Healthy', 'Regular', 'No Preference'],
 				required: true,
 			},
 			lunch: {
 				type: String,
-				enum: ['Healthy', 'Fast Food', 'No preference'],
+				enum: ['Healthy', 'Fast Food', 'No Preference'],
 				required: true,
 			},
 			dinner: {
 				type: String,
-				enum: ['Healthy', 'Fast Food', 'No preference'],
+				enum: ['Healthy', 'Fast Food', 'No Preference'],
 				required: true,
 			},
 		},

@@ -1,42 +1,5 @@
-/**
- * IMPORTS SETUP
- */
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
-// navbar imports
-import { AppBar, Toolbar, IconButton, Hidden } from '@material-ui/core';
-
-// sidebar imports
-import {
-	Drawer,
-	Divider,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-} from '@material-ui/core';
-
-// icons imports
-import {
-	Menu as MenuIcon,
-	Dashboard as DashboardIcon,
-	RecordVoiceOver as RecordVoiceOverIcon,
-	Note as NoteIcon,
-	People as PeopleIcon,
-	MeetingRoom as MeetingRoomIcon,
-} from '@material-ui/icons';
-
-// styling imports
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {
-	CssBaseline,
-	Typography,
-	// Container,
-	Button,
-	Chip,
-	Box,
-} from '@material-ui/core';
 
 // pages imports
 import Overview from './pages/Overview';
@@ -44,8 +7,43 @@ import Speakers from './pages/Speakers';
 import Schedules from './pages/Schedules';
 import Attendees from './pages/Attendees';
 
+import Logout from './components/auth/Logout';
+
+// Material UI imports
+import {
+	// navbar imports
+	AppBar,
+	Toolbar,
+	IconButton,
+	Hidden,
+	// sidebar imports
+	Drawer,
+	Divider,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	// Other imports
+	CssBaseline,
+	Typography,
+	Chip,
+	Box,
+} from '@material-ui/core';
+
+// MUI icons imports
+import {
+	Menu as MenuIcon,
+	Dashboard as DashboardIcon,
+	RecordVoiceOver as RecordVoiceOverIcon,
+	Note as NoteIcon,
+	People as PeopleIcon,
+} from '@material-ui/icons';
+
+// MUI styling imports
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+
 /**
- * STYLING CONFIG
+ * MUI STYLING CONFIG
  */
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -88,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Home() {
+function Home(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -156,7 +154,10 @@ function Home() {
 							<MenuIcon />
 						</IconButton>
 						<Typography variant="h6" noWrap className={classes.title}>
-							Dashboard React Conf 2020
+							Dashboard React Conf 2020{' '}
+							{props.userName !== 'admin'
+								? '(Add, Edit and Delete features are disabled for Read Only Admin)'
+								: ''}
 						</Typography>
 						<Box mr={1}>
 							<span>Logged in as</span>
@@ -165,12 +166,13 @@ function Home() {
 							<Chip
 								// variant="outlined"
 								size="small"
-								label="Read Only Admin"
+								label={props.userName}
 							/>
 						</Box>
-						<Button variant="contained" startIcon={<MeetingRoomIcon />}>
+						{/* <Button variant="contained" startIcon={<MeetingRoomIcon />}>
 							Logout
-						</Button>
+						</Button> */}
+						<Logout />
 					</Toolbar>
 				</AppBar>
 				<nav className={classes.drawer} aria-label="mailbox folders">

@@ -71,6 +71,7 @@ function AddNewAttendeeDialog(props) {
 				className={classes.button}
 				startIcon={<AddCircleIcon />}
 				onClick={handleClickOpen}
+				disabled={props.userName !== 'admin' ? true : false}
 			>
 				Add New Attendee
 			</Button>

@@ -203,6 +203,7 @@ function Schedules(props) {
 						variant="contained"
 						color="primary"
 						className={classes.button}
+						disabled={props.userName !== 'admin' ? true : false}
 						startIcon={<AddCircleIcon />}
 					>
 						Add New Session
@@ -226,13 +227,17 @@ function Schedules(props) {
 									<StyledTableRow key={session._id}>
 										<StyledTableCell>
 											<Tooltip title="Edit" placement="left-end">
-												<IconButton aria-label="edit">
+												<IconButton
+													disabled={props.userName !== 'admin' ? true : false}
+													aria-label="edit"
+												>
 													<EditIcon />
 												</IconButton>
 											</Tooltip>
 											<Tooltip title="Delete" placement="left-end">
 												<IconButton
 													aria-label="delete"
+													disabled={props.userName !== 'admin' ? true : false}
 													onClick={() =>
 														handleDeleteSession(
 															scheduleId,
@@ -271,6 +276,7 @@ function Schedules(props) {
 			<Button
 				variant="contained"
 				color="primary"
+				disabled={props.userName !== 'admin' ? true : false}
 				className={classes.button}
 				startIcon={<AddCircleIcon />}
 			>
@@ -293,6 +299,7 @@ function Schedules(props) {
 								<Typography className={classes.headingIcons}>
 									<Tooltip title="Edit" placement="left-end">
 										<IconButton
+											disabled={props.userName !== 'admin' ? true : false}
 											onClick={(event) => {
 												event.stopPropagation();
 											}}
@@ -305,6 +312,7 @@ function Schedules(props) {
 									</Tooltip>
 									<Tooltip title="Delete" placement="left-end">
 										<IconButton
+											disabled={props.userName !== 'admin' ? true : false}
 											onClick={(event) => {
 												event.stopPropagation();
 												handleDeleteSchedule(
@@ -334,11 +342,15 @@ function Schedules(props) {
 
 Schedules.propTypes = {
 	getSchedules: PropTypes.func.isRequired,
+	deleteSchedule: PropTypes.func.isRequired,
+	deleteSession: PropTypes.func.isRequired,
 	schedule: PropTypes.object.isRequired,
+	userName: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
 	schedule: state.schedule,
+	userName: state.auth.user.name,
 });
 
 export default connect(mapStateToProps, {

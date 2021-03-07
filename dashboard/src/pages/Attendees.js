@@ -131,7 +131,7 @@ function Attendees(props) {
 	return (
 		<>
 			<h1>ATTENDEES</h1>
-			<AddNewAttendeeDialog />
+			<AddNewAttendeeDialog userName={props.userName} />
 			<TableContainer component={Paper}>
 				<Table
 					className={classes.table}
@@ -157,10 +157,14 @@ function Attendees(props) {
 								<StyledTableRow key={attendee._id}>
 									<StyledTableCell>
 										<Tooltip title="Edit" placement="left-end">
-											<UpdateAttendeeDialog theAttendee={attendee} />
+											<UpdateAttendeeDialog
+												theAttendee={attendee}
+												userName={props.userName}
+											/>
 										</Tooltip>
 										<Tooltip title="Delete" placement="left-end">
 											<IconButton
+												disabled={props.userName !== 'admin' ? true : false}
 												aria-label="delete"
 												onClick={() =>
 													handleDeleteAttendee(
@@ -207,11 +211,14 @@ function Attendees(props) {
 
 Attendees.propTypes = {
 	getAttendees: PropTypes.func.isRequired,
+	deleteAttendee: PropTypes.func.isRequired,
 	attendee: PropTypes.object.isRequired,
+	userName: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
 	attendee: state.attendee,
+	userName: state.auth.user.name,
 });
 
 export default connect(mapStateToProps, { getAttendees, deleteAttendee })(

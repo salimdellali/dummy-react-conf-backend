@@ -1,5 +1,5 @@
 // Database Setup
-require('dotenv/config');
+// require('dotenv/config');
 const mongoose = require('mongoose');
 
 mongoose.set('useNewUrlParser', true);

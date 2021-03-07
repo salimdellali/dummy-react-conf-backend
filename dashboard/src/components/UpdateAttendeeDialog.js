@@ -64,7 +64,11 @@ function UpdateAttendeeDialog(props) {
 
 	return (
 		<>
-			<IconButton aria-label="edit" onClick={handleClickOpen}>
+			<IconButton
+				aria-label="edit"
+				onClick={handleClickOpen}
+				disabled={props.userName !== 'admin' ? true : false}
+			>
 				<EditIcon />
 			</IconButton>
 			<Dialog

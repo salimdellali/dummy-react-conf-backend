@@ -1,44 +1,33 @@
-// import logo from './logo.svg';
-// import './App.css';
-import Home from './Home';
-
+import { useEffect } from 'react';
+// import Home from './Home';
+// import Login from './Login';
+import LoginOrHome from './LoginOrHome';
 import { Provider } from 'react-redux';
 import { ConfirmProvider } from 'material-ui-confirm';
 import { SnackbarProvider } from 'notistack';
 import store from './store';
+import { loadUser } from './actions/authActions';
 
 import Notifier from './components/Notifier';
 
 function App() {
-	// eslint-disable-next-line no-lone-blocks
-	{
-		/**
-	Here we will be having the Login page if not authenticated
-	Or the Home page if we are authenticated	
-	*/
-	}
+	// const { isAuthenticated } = store.getState().auth;
+	// console.log({ isAuthenticated });
+	// To make sure the loadUser action executes every time, we put it inside componenetDidMount in App.js
+	useEffect(() => {
+		store.dispatch(loadUser()); // since we have access to the store at line 7, we can access .dispatch() the loadUser action
+	}, []);
+
 	return (
 		<Provider store={store}>
 			<ConfirmProvider>
 				<SnackbarProvider>
 					<Notifier />
 					<div className="App">
-						{/* <header className="App-header">
-					<h1>React Conf 2020 Dashboard</h1>
-					<img src={logo} className="App-logo" alt="logo" />
-					<p>
-						Edit <code>src/App.js</code> and save to reload.
-					</p>
-					<a
-						className="App-link"
-						href="https://reactjs.org"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Learn React
-					</a>
-				</header> */}
-						<Home />
+						{/* {store.getState().auth.isAuthenticated ? <Home /> : <Login />} */}
+						{/* <Login /> */}
+						{/* <Home /> */}
+						<LoginOrHome />
 					</div>
 				</SnackbarProvider>
 			</ConfirmProvider>
