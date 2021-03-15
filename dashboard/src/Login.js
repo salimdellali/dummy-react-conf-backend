@@ -41,32 +41,6 @@ function Login(props) {
 	const enqueueSnackbar = (...args) => dispatch(enqueueSnackbarAction(...args));
 	const closeSnackbar = (...args) => dispatch(closeSnackbarAction(...args));
 
-	// mimicking componentDidUpdate Lifecycle
-	// useEffect(() => {
-	// 	const { error, isAuthenticated } = props;
-
-	// 	// check if a register error
-	// 	if (error.id === 'LOGIN_FAIL') {
-	// 		setState({
-	// 			...state,
-	// 			msg: error.msg.msg,
-	// 		});
-	// 	} else {
-	// 		setState({
-	// 			...state,
-	// 			msg: null,
-	// 		});
-	// 	}
-
-	// 	// if authenticated, close modal
-	// 	if (state.modal) {
-	// 		if (isAuthenticated) {
-	// 			// something
-	// 		}
-	// 	}
-	// }, [props.error, props.isAuthenticated]);
-	// }, [props.error, toggle, props.isAuthenticated, state.modal]); // as seen in the traversy github repo
-
 	return (
 		<Container maxWidth="sm">
 			{/** ADMIN FROM */}
@@ -117,10 +91,10 @@ function Login(props) {
 			>
 				{({ submitForm, isSubmitting, handleReset }) => (
 					<Form>
-						<Typography align="center">
+						<div align="center">
 							<img src={logo} className="App-logo" alt="logo" />
-							<h1>React Conf 2020 Dashboard</h1>
-						</Typography>
+							<h1>React Conf 2021 Dashboard</h1>
+						</div>
 						{isSubmitting && (
 							<Box mb={1}>
 								<LinearProgress />
@@ -205,9 +179,9 @@ function Login(props) {
 				{({ submitForm, isSubmitting }) => (
 					<Form>
 						<Box mb={-2}>
-							<Typography align="center">
+							<div align="center">
 								<h5>OR</h5>
-							</Typography>
+							</div>
 						</Box>
 						<Box mb={1}>
 							<Button

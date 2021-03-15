@@ -14,8 +14,8 @@ const Attendee = require('../../models/Attendee');
 router.get('/', (req, res) => {
 	Attendee.find()
 		.exec()
-		.then((attendee) => {
-			res.json(attendee);
+		.then((attendees) => {
+			res.json(attendees);
 		})
 		.catch((err) => {
 			res.json({ message: 'error has occured : ' + err });

@@ -14,11 +14,11 @@ const store = createStore(
 	 * Comment this just before pushing to production
 	 */
 	// to use redux tools, we need to use compose
-	// compose(
-	// 	applyMiddleware(...middleware),
-	// 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-	// )
-	applyMiddleware(...middleware)
+	compose(
+		applyMiddleware(...middleware),
+		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	)
+	// applyMiddleware(...middleware)
 );
 
 export default store;

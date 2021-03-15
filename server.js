@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 require('dotenv/config');
-require('./database');
+require('./database'); 
 
 // Init app
 const app = express();
@@ -16,6 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // import routes and use routes as middlewares
+app.use('/api/overview', require('./routes/api/overview'));
 app.use('/api/speakers', require('./routes/api/speakers'));
 app.use('/api/schedules', require('./routes/api/schedules'));
 app.use('/api/attendees', require('./routes/api/attendees'));

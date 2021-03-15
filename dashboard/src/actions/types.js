@@ -1,3 +1,6 @@
+// Managing Overview actions
+export const GET_OVERVIEW = 'GET_OVERVIEW';
+
 // Managing Attendees actions
 export const GET_ATTENDEES = 'GET_ATTENDEES';
 export const ADD_ATTENDEE = 'ADD_ATTENDEE';

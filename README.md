@@ -27,12 +27,12 @@
 
 ---
 
-### Repo structure
+### Repo structure :
 
 - Root folder `/` : the RESTful API of the React Conf.
 - `dashboard/` folder : the control panel for admins of the React Conf ( using Create-React-App boilerplate ).
 
-### Usage
+### Usage :
 
 - This repo serves as the backend to the [Dummy React Conf Website](https://github.com/salimdellali/dummy-react-conf-website).
 - A RESTful API is built to serve data to the **Dummy React Conf Website** and the **Dashboard** (the data is stored in a MongoDB Database).

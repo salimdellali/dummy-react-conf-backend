@@ -156,7 +156,7 @@ function Home(props) {
 						<Typography variant="h6" noWrap className={classes.title}>
 							Dashboard React Conf 2020{' '}
 							{props.userName !== 'admin'
-								? '(Add, Edit and Delete features are disabled for Read Only Admin)'
+								? '(Add, Edit and Delete features are disabled)'
 								: ''}
 						</Typography>
 						<Box mr={1}>
