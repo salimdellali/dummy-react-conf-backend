@@ -21,29 +21,10 @@ const useStyles = makeStyles((theme) => ({
 function Overview(props) {
 	const classes = useStyles();
 	const { overview } = props;
-	// const [startTime, setStartTime] = useState(new Date('Dec 21, 2021 08:30:00'));
-	const [isLoading, setIsLoading] = useState(true);
-
-	console.table(overview);
-	// console.log(
-	// 	'speakers=' +
-	// 		overview.numberOfSpeakers +
-	// 		' sessions=' +
-	// 		overview.numberOfSessions +
-	// 		' attendees=' +
-	// 		overview.numberOfAttendees
-	// );
 
 	useEffect(() => {
 		props.getOverview();
-		setIsLoading(false);
 	}, []);
-
-	// useEffect(() => {
-	// 	setOverview(props.overview);
-	// 	console.log('here: ' + { overview });
-	// 	setStartTime(new Date('Dec 21, 2021 08:30:00'));
-	// }, [props.overview]);
 
 	const [timerDays, setTimerDays] = useState(0);
 	const [timerHours, setTimerHours] = useState(0);
@@ -137,7 +118,6 @@ function Overview(props) {
 										Speakers
 									</Typography>
 									<Typography variant="h5">
-										{/* {isLoading ? 0 : overview.numberOfSpeakers} */}
 										{overview.numberOfSpeakers}
 									</Typography>
 								</CardContent>
@@ -157,7 +137,6 @@ function Overview(props) {
 										Sessions
 									</Typography>
 									<Typography variant="h5">
-										{/* {isLoading ? 0 : overview.numberOfSessions} */}
 										{overview.numberOfSessions}
 									</Typography>
 								</CardContent>
@@ -177,7 +156,6 @@ function Overview(props) {
 										Attendees
 									</Typography>
 									<Typography variant="h5">
-										{/* {isLoading ? 0 : overview.numberOfAttendees} */}
 										{overview.numberOfAttendees}
 									</Typography>
 								</CardContent>

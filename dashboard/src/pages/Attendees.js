@@ -6,10 +6,6 @@ import AddNewAttendeeDialog from '../components/AddNewAttendeeDialog';
 import UpdateAttendeeDialog from '../components/UpdateAttendeeDialog';
 
 import { getAttendees, deleteAttendee } from '../actions/attendeeActions';
-import {
-	enqueueSnackbar as enqueueSnackbarAction,
-	closeSnackbar as closeSnackbarAction,
-} from '../actions/notifierActions';
 
 import PropTypes from 'prop-types';
 
@@ -17,15 +13,14 @@ import PropTypes from 'prop-types';
  * MATERIAL UI IMPORTS
  */
 import {
+	// table Related
 	Table,
 	TableBody,
 	TableCell,
 	TableContainer,
 	TableHead,
 	TableRow,
-} from '@material-ui/core';
-
-import {
+	// Other
 	Avatar,
 	Paper,
 	IconButton,
@@ -72,11 +67,6 @@ function Attendees(props) {
 	const { attendees } = props.attendee;
 	const [isLoading, setIsLoading] = useState(true);
 
-	// notifier related
-	const dispatch = useDispatch();
-	const enqueueSnackbar = (...args) => dispatch(enqueueSnackbarAction(...args));
-	const closeSnackbar = (...args) => dispatch(closeSnackbarAction(...args));
-
 	useEffect(() => {
 		props.getAttendees();
 		setIsLoading(false);
@@ -89,43 +79,7 @@ function Attendees(props) {
 			description: `Permanently delete attendee: ${fullName} (${email}) ?`,
 		})
 			// Deletion accepted
-			.then(() => props.deleteAttendee(id))
-			//notifier deletion success
-			.then(() => {
-				enqueueSnackbar({
-					message: `Attendee ${fullName} Deleted Successfully`,
-					options: {
-						key: new Date().getTime() + Math.random(),
-						variant: 'success',
-						action: (key) => (
-							<IconButton
-								aria-label="closeNotification"
-								onClick={() => closeSnackbar(key)}
-							>
-								<CloseIcon />
-							</IconButton>
-						),
-					},
-				});
-			})
-			// notifier deletion canceled
-			.catch(() => {
-				enqueueSnackbar({
-					message: `Deletion Attendee ${fullName} Canceled`,
-					options: {
-						key: new Date().getTime() + Math.random(),
-						variant: 'error',
-						action: (key) => (
-							<IconButton
-								aria-label="closeNotification"
-								onClick={() => closeSnackbar(key)}
-							>
-								<CloseIcon />
-							</IconButton>
-						),
-					},
-				});
-			});
+			.then(() => props.deleteAttendee(id));
 	};
 
 	return (

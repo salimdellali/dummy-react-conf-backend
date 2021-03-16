@@ -11,8 +11,6 @@ import { loadUser } from './actions/authActions';
 import Notifier from './components/Notifier';
 
 function App() {
-	// const { isAuthenticated } = store.getState().auth;
-	// console.log({ isAuthenticated });
 	// To make sure the loadUser action executes every time, we put it inside componenetDidMount in App.js
 	useEffect(() => {
 		store.dispatch(loadUser()); // since we have access to the store at line 7, we can access .dispatch() the loadUser action
@@ -24,9 +22,6 @@ function App() {
 				<SnackbarProvider>
 					<Notifier />
 					<div className="App">
-						{/* {store.getState().auth.isAuthenticated ? <Home /> : <Login />} */}
-						{/* <Login /> */}
-						{/* <Home /> */}
 						<LoginOrHome />
 					</div>
 				</SnackbarProvider>

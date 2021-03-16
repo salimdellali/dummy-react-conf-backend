@@ -15,15 +15,14 @@ import PropTypes from 'prop-types';
  * MATERIAL UI IMPORTS
  */
 import {
+	// Table related
 	Table,
 	TableBody,
 	TableCell,
 	TableContainer,
 	TableHead,
 	TableRow,
-} from '@material-ui/core';
-
-import {
+	// Other
 	Avatar,
 	Paper,
 	IconButton,

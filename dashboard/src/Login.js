@@ -20,27 +20,10 @@ import {
 	Button,
 	Box,
 	Container,
-	Typography,
 	LinearProgress,
-	IconButton,
 } from '@material-ui/core';
 
-// Material UI Icons
-import { Close as CloseIcon } from '@material-ui/icons';
-
 function Login(props) {
-	const [state, setState] = useState({
-		name: '',
-		email: '',
-		password: '',
-		msg: null,
-	});
-
-	// notifier related
-	const dispatch = useDispatch();
-	const enqueueSnackbar = (...args) => dispatch(enqueueSnackbarAction(...args));
-	const closeSnackbar = (...args) => dispatch(closeSnackbarAction(...args));
-
 	return (
 		<Container maxWidth="sm">
 			{/** ADMIN FROM */}
@@ -68,24 +51,6 @@ function Login(props) {
 
 					// Attempt to login
 					props.login(user);
-
-					// move this to the actions folder
-					// enqueueSnackbar({
-					// 	message: `Attendee ${values.fullName} Added Successfully`,
-					// 	options: {
-					// 		key: new Date().getTime() + Math.random(),
-					// 		variant: 'success',
-					// 		action: (key) => (
-					// 			<IconButton
-					// 				aria-label="closeNotification"
-					// 				onClick={() => closeSnackbar(key)}
-					// 			>
-					// 				<CloseIcon />
-					// 			</IconButton>
-					// 		),
-					// 	},
-					// });
-					// handleClose();
 					resetForm();
 				}}
 			>
@@ -108,8 +73,6 @@ function Login(props) {
 								type="email"
 								label="Email"
 								fullWidth={true}
-								// required
-								// id="emailFormik"
 							/>
 						</Box>
 
@@ -121,7 +84,6 @@ function Login(props) {
 								type="password"
 								label="Password"
 								fullWidth={true}
-								// required
 							/>
 						</Box>
 
@@ -155,24 +117,6 @@ function Login(props) {
 
 					// Attempt to login
 					props.login(user);
-
-					// move this to the actions folder
-					// enqueueSnackbar({
-					// 	message: `Attendee ${values.fullName} Added Successfully`,
-					// 	options: {
-					// 		key: new Date().getTime() + Math.random(),
-					// 		variant: 'success',
-					// 		action: (key) => (
-					// 			<IconButton
-					// 				aria-label="closeNotification"
-					// 				onClick={() => closeSnackbar(key)}
-					// 			>
-					// 				<CloseIcon />
-					// 			</IconButton>
-					// 		),
-					// 	},
-					// });
-					// handleClose();
 					resetForm();
 				}}
 			>
@@ -187,7 +131,6 @@ function Login(props) {
 							<Button
 								variant="contained"
 								color="primary"
-								// className={classes.button}
 								disabled={isSubmitting}
 								onClick={submitForm}
 								fullWidth={true}

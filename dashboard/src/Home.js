@@ -154,7 +154,7 @@ function Home(props) {
 							<MenuIcon />
 						</IconButton>
 						<Typography variant="h6" noWrap className={classes.title}>
-							Dashboard React Conf 2020{' '}
+							Dashboard React Conf 2021{' '}
 							{props.userName !== 'admin'
 								? '(Add, Edit and Delete features are disabled)'
 								: ''}

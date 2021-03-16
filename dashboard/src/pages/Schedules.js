@@ -19,6 +19,15 @@ import PropTypes from 'prop-types';
  * MATERIAL UI IMPORTS
  */
 import {
+	// Table related
+	Table,
+	TableBody,
+	TableCell,
+	TableContainer,
+	TableHead,
+	TableRow,
+	Paper,
+	// Accordion
 	Accordion,
 	AccordionSummary,
 	AccordionDetails,
@@ -30,16 +39,7 @@ import {
 	LinearProgress,
 } from '@material-ui/core';
 
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow,
-	Paper,
-} from '@material-ui/core';
-
+// MUI Icons
 import {
 	ExpandMore as ExpandMoreIcon,
 	AddCircle as AddCircleIcon,
@@ -48,9 +48,9 @@ import {
 	Close as CloseIcon,
 } from '@material-ui/icons';
 
+// MATERIAL UI CUSTOM STYLING
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-// MATERIAL UI CUSTOM STYLING
 const StyledTableCell = withStyles((theme) => ({
 	head: {
 		backgroundColor: theme.palette.common.black,
