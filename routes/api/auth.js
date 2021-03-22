@@ -18,16 +18,19 @@ router.post('/', (req, res) => {
 
 	// Simple validation
 	if (!email || !password) {
-		return res.status(400).json({ msg: 'Pleae enter all fields' });
+		// return res.status(400).json({ msg: 'Pleae enter all fields' });
+		return res.status(400).send('Pleae enter all fields');
 	}
 
 	// Check for existing user
 	User.findOne({ email: email }).then((user) => {
-		if (!user) return res.status(400).json({ msg: 'User does not exist' });
+		// if (!user) return res.status(400).json({ msg: 'User does not exist' });
+		if (!user) return res.status(400).send('Email provided does not exist');
 
 		// Validate password
 		bcrypt.compare(password, user.password).then((isMatch) => {
-			if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+			// if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+			if (!isMatch) return res.status(400).send('Invalid credentials');
 
 			jwt.sign(
 				{ id: user.id }, // the payload, first parameter of sign() method, can be anything

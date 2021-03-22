@@ -10,9 +10,6 @@ const middleware = [thunk];
 const store = createStore(
 	rootReducer,
 	initialState,
-	/**
-	 * Comment this just before pushing to production
-	 */
 	// to use redux tools, we need to use compose
 	compose(
 		applyMiddleware(...middleware),
@@ -20,7 +17,6 @@ const store = createStore(
 			? window.__REDUX_DEVTOOLS_EXTENSION__()
 			: (f) => f
 	)
-	// applyMiddleware(...middleware)
 );
 
 export default store;

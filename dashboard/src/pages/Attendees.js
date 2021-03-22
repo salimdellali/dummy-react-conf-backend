@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
 import { useConfirm } from 'material-ui-confirm';
 import AddNewAttendeeDialog from '../components/AddNewAttendeeDialog';
@@ -29,7 +29,7 @@ import {
 } from '@material-ui/core';
 
 // MATERIAL UI ICONS
-import { Delete as DeleteIcon, Close as CloseIcon } from '@material-ui/icons';
+import { Delete as DeleteIcon } from '@material-ui/icons';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
@@ -167,7 +167,7 @@ Attendees.propTypes = {
 	getAttendees: PropTypes.func.isRequired,
 	deleteAttendee: PropTypes.func.isRequired,
 	attendee: PropTypes.object.isRequired,
-	userName: PropTypes.bool.isRequired,
+	userName: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

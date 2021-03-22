@@ -24,6 +24,7 @@ function Overview(props) {
 
 	useEffect(() => {
 		props.getOverview();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const [timerDays, setTimerDays] = useState(0);
@@ -77,6 +78,7 @@ function Overview(props) {
 	// ComponentDidMount
 	useEffect(() => {
 		return () => {
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 			clearInterval(interval.current);
 		};
 	});

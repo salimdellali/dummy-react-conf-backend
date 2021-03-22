@@ -1,12 +1,12 @@
 import React from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { addAttendee } from '../actions/attendeeActions';
 import { Formik, Form, Field } from 'formik';
 import { TextField, RadioGroup } from 'formik-material-ui';
-import {
-	enqueueSnackbar as enqueueSnackbarAction,
-	closeSnackbar as closeSnackbarAction,
-} from '../actions/notifierActions';
+// import {
+// 	enqueueSnackbar as enqueueSnackbarAction,
+// 	closeSnackbar as closeSnackbarAction,
+// } from '../actions/notifierActions';
 
 import PropTypes from 'prop-types';
 
@@ -27,14 +27,12 @@ import {
 	Box,
 	Grid,
 	LinearProgress,
-	IconButton,
 } from '@material-ui/core';
 
 // Material UI Icons
 import {
 	AddCircle as AddCircleIcon,
 	People as PeopleIcon,
-	Close as CloseIcon,
 } from '@material-ui/icons';
 
 // Material UI Styles
@@ -50,10 +48,10 @@ function AddNewAttendeeDialog(props) {
 
 	const [open, setOpen] = React.useState(false);
 
-	// notifier related
-	const dispatch = useDispatch();
-	const enqueueSnackbar = (...args) => dispatch(enqueueSnackbarAction(...args));
-	const closeSnackbar = (...args) => dispatch(closeSnackbarAction(...args));
+	// // notifier related
+	// const dispatch = useDispatch();
+	// const enqueueSnackbar = (...args) => dispatch(enqueueSnackbarAction(...args));
+	// const closeSnackbar = (...args) => dispatch(closeSnackbarAction(...args));
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -125,21 +123,21 @@ function AddNewAttendeeDialog(props) {
 						// Add attendee via addAttendee action
 						props.addAttendee(newAttendee);
 
-						enqueueSnackbar({
-							message: `Attendee ${values.fullName} Added Successfully`,
-							options: {
-								key: new Date().getTime() + Math.random(),
-								variant: 'success',
-								action: (key) => (
-									<IconButton
-										aria-label="closeNotification"
-										onClick={() => closeSnackbar(key)}
-									>
-										<CloseIcon />
-									</IconButton>
-								),
-							},
-						});
+						// enqueueSnackbar({
+						// 	message: `Attendee ${values.fullName} Added Successfully`,
+						// 	options: {
+						// 		key: new Date().getTime() + Math.random(),
+						// 		variant: 'success',
+						// 		action: (key) => (
+						// 			<IconButton
+						// 				aria-label="closeNotification"
+						// 				onClick={() => closeSnackbar(key)}
+						// 			>
+						// 				<CloseIcon />
+						// 			</IconButton>
+						// 		),
+						// 	},
+						// });
 						handleClose();
 						resetForm();
 					}}

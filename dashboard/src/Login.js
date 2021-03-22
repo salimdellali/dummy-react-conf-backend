@@ -1,18 +1,13 @@
 import logo from './logo.svg';
 
-import React, { useState, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from './actions/authActions';
 import { clearErrors } from './actions/errorActions';
 
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
-
-import {
-	enqueueSnackbar as enqueueSnackbarAction,
-	closeSnackbar as closeSnackbarAction,
-} from './actions/notifierActions';
 
 // Material UI
 import {
@@ -51,7 +46,7 @@ function Login(props) {
 
 					// Attempt to login
 					props.login(user);
-					resetForm();
+					// resetForm();
 				}}
 			>
 				{({ submitForm, isSubmitting, handleReset }) => (

@@ -227,7 +227,7 @@ Speakers.propTypes = {
 	getSpeakers: PropTypes.func.isRequired,
 	deleteSpeaker: PropTypes.func.isRequired,
 	speaker: PropTypes.object.isRequired,
-	userName: PropTypes.bool.isRequired,
+	userName: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

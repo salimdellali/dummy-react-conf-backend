@@ -1,12 +1,8 @@
 import React from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { updateAttendee } from '../actions/attendeeActions';
 import { Formik, Form, Field } from 'formik';
 import { TextField, RadioGroup } from 'formik-material-ui';
-import {
-	enqueueSnackbar as enqueueSnackbarAction,
-	closeSnackbar as closeSnackbarAction,
-} from '../actions/notifierActions';
 
 import PropTypes from 'prop-types';
 
@@ -31,11 +27,7 @@ import {
 } from '@material-ui/core';
 
 // Material UI Icons
-import {
-	Edit as EditIcon,
-	People as PeopleIcon,
-	Close as CloseIcon,
-} from '@material-ui/icons';
+import { Edit as EditIcon, People as PeopleIcon } from '@material-ui/icons';
 
 // Material UI Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -48,11 +40,6 @@ const useStyles = makeStyles((theme) => ({
 function UpdateAttendeeDialog(props) {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
-
-	// notifier related
-	const dispatch = useDispatch();
-	const enqueueSnackbar = (...args) => dispatch(enqueueSnackbarAction(...args));
-	const closeSnackbar = (...args) => dispatch(closeSnackbarAction(...args));
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -123,21 +110,6 @@ function UpdateAttendeeDialog(props) {
 						// Add attendee via addAttendee action
 						props.updateAttendee(updatedAttendee);
 
-						enqueueSnackbar({
-							message: `Attendee ${values.fullName} Updated Successfully`,
-							options: {
-								key: new Date().getTime() + Math.random(),
-								variant: 'success',
-								action: (key) => (
-									<IconButton
-										aria-label="closeNotification"
-										onClick={() => closeSnackbar(key)}
-									>
-										<CloseIcon />
-									</IconButton>
-								),
-							},
-						});
 						handleClose();
 						// resetForm();
 					}}
@@ -158,13 +130,11 @@ function UpdateAttendeeDialog(props) {
 								<Box mb={1} mt={-1}>
 									<Field
 										component={TextField}
-										name="id"
+										name="_id"
 										type="text"
 										label="Id"
 										fullWidth={true}
 										disabled
-										value="1"
-										// required
 									/>
 								</Box>
 
@@ -176,7 +146,6 @@ function UpdateAttendeeDialog(props) {
 										type="email"
 										label="Email"
 										fullWidth={true}
-										// required
 									/>
 								</Box>
 
@@ -188,7 +157,6 @@ function UpdateAttendeeDialog(props) {
 										type="text"
 										label="Full Name"
 										fullWidth={true}
-										// required
 									/>
 								</Box>
 
@@ -200,7 +168,6 @@ function UpdateAttendeeDialog(props) {
 										type="text"
 										label="Picture"
 										fullWidth={true}
-										// required
 									/>
 								</Box>
 
@@ -211,11 +178,7 @@ function UpdateAttendeeDialog(props) {
 									{/* Breakfast */}
 									<Grid item xs>
 										<FormLabel component="legend">Breakfast</FormLabel>
-										<Field
-											component={RadioGroup}
-											name="breakfast"
-											// value="Classic"
-										>
+										<Field component={RadioGroup} name="breakfast">
 											<FormControlLabel
 												value="Classic"
 												control={
@@ -245,11 +208,7 @@ function UpdateAttendeeDialog(props) {
 									{/* Snacks */}
 									<Grid item xs>
 										<FormLabel component="legend">Snacks</FormLabel>
-										<Field
-											component={RadioGroup}
-											name="snacks"
-											// value="Classic"
-										>
+										<Field component={RadioGroup} name="snacks">
 											<FormControlLabel
 												value="Healthy"
 												control={
@@ -309,11 +268,7 @@ function UpdateAttendeeDialog(props) {
 									{/* Dinner */}
 									<Grid item xs>
 										<FormLabel component="legend">Dinner</FormLabel>
-										<Field
-											component={RadioGroup}
-											name="dinner"
-											// value="Classic"
-										>
+										<Field component={RadioGroup} name="dinner">
 											<FormControlLabel
 												value="Healthy"
 												control={
@@ -352,7 +307,7 @@ function UpdateAttendeeDialog(props) {
 									onClick={handleReset}
 									disabled={isSubmitting}
 								>
-									Reset
+									Reset to default values
 								</Button>
 								<Button
 									variant="contained"

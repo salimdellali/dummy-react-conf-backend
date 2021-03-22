@@ -3,11 +3,11 @@ import { logout } from '../../actions/authActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// icons imports
-import { MeetingRoom as MeetingRoomIcon } from '@material-ui/icons';
-
-//
+// MUI imports
 import { Button } from '@material-ui/core';
+
+// MUI icons
+import { MeetingRoom as MeetingRoomIcon } from '@material-ui/icons';
 
 function Logout(props) {
 	return (

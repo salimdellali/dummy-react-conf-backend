@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { returnErrors } from './errorActions';
 import {
 	USER_LOADED,
 	USER_LOADING,
@@ -7,9 +6,13 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT_SUCCESS,
-	REGISTER_SUCCESS,
-	REGISTER_FAIL,
+	// REGISTER_SUCCESS,
+	// REGISTER_FAIL,
 } from './types';
+import { returnErrors } from './errorActions';
+
+// Helper function
+import { notify } from './helperFunctions';
 
 // Check token and load user
 export const loadUser = () => (dispatch, getState) => {
@@ -53,13 +56,15 @@ export const login = ({ email, password }) => (dispatch) => {
 
 	axios
 		.post('/api/auth', body, config)
-		.then((res) =>
+		.then((res) => {
+			notify(`Logged in as ${res.data.user.name}`, 'info', dispatch);
 			dispatch({
 				type: LOGIN_SUCCESS,
 				payload: res.data,
-			})
-		)
+			});
+		})
 		.catch((err) => {
+			notify(`Something went wrong! (${err.response.data})`, 'error', dispatch);
 			dispatch(
 				returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
 			);
@@ -70,10 +75,11 @@ export const login = ({ email, password }) => (dispatch) => {
 };
 
 // Logout User
-export const logout = () => {
-	return {
+export const logout = () => (dispatch) => {
+	notify(`Logged out Succcesfully!`, 'info', dispatch);
+	dispatch({
 		type: LOGOUT_SUCCESS,
-	};
+	});
 };
 
 // Setup config/headers and token

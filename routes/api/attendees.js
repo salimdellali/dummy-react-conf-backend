@@ -28,8 +28,21 @@ router.get('/', (req, res) => {
  * @desc Public
  */
 router.post('/', (req, res) => {
-	const newAttendee = new Attendee(JSON.parse(JSON.stringify(req.body)));
-	newAttendee.save().then((attendee) => res.json(attendee));
+	Attendee.exists({ email: req.body.email })
+		.then((found) => {
+			if (found) {
+				// email already exists, deny
+				res.status(400).send('Email already in use');
+			} else {
+				// email doesn't exist, allow
+				const newAttendee = new Attendee(JSON.parse(JSON.stringify(req.body)));
+				newAttendee.save().then((attendee) => res.json(attendee));
+			}
+		})
+		.catch((err) => {
+			// Server Error
+			res.status(500).send('Something went wrong!');
+		});
 });
 
 /**
@@ -38,16 +51,34 @@ router.post('/', (req, res) => {
  * @desc PRIVATE
  */
 router.put('/', auth, (req, res) => {
-	// const updatedAttendee = new Attendee(JSON.parse(JSON.stringify(req.body)));
-	// updatedAttendee.save().then((attendee) => res.json(attendee));
-	Attendee.findOneAndUpdate({ _id: req.body._id }, req.body)
-		.exec()
-		.then((attendee) => {
-			res.json(attendee);
+	Attendee.exists({
+		$and: [{ _id: { $ne: req.body._id } }, { email: req.body.email }],
+	})
+		.then((found) => {
+			if (found) {
+				// email already exists, deny
+				res.status(400).send('Email already in use');
+			} else {
+				// email doesn't exist, allow
+				Attendee.findOneAndUpdate({ _id: req.body._id }, req.body)
+					.exec()
+					.then((attendee) => {
+						res.json(attendee);
+					});
+			}
 		})
 		.catch((err) => {
-			res.json({ message: 'error has occured : ' + err });
+			// Server Error
+			res.status(500).send('Something went wrong!');
 		});
+	// Attendee.findOneAndUpdate({ _id: req.body._id }, req.body)
+	// 	.exec()
+	// 	.then((attendee) => {
+	// 		res.json(attendee);
+	// 	})
+	// 	.catch((err) => {
+	// 		res.json({ message: 'error has occured : ' + err });
+	// 	});
 });
 
 /**
@@ -58,7 +89,8 @@ router.put('/', auth, (req, res) => {
 router.delete('/:id', auth, (req, res) => {
 	Attendee.findById(req.params.id)
 		.then((attendee) =>
-			attendee.remove().then(() => res.json({ success: true }))
+			// attendee.remove().then(() => res.json({ success: true }))
+			attendee.remove().then((attendee) => res.json(attendee))
 		)
 		.catch((err) => res.status(404).json({ success: false }));
 });

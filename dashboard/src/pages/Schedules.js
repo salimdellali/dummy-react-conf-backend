@@ -345,7 +345,7 @@ Schedules.propTypes = {
 	deleteSchedule: PropTypes.func.isRequired,
 	deleteSession: PropTypes.func.isRequired,
 	schedule: PropTypes.object.isRequired,
-	userName: PropTypes.bool.isRequired,
+	userName: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
