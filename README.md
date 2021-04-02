@@ -29,8 +29,12 @@
 
 ### Repo structure :
 
-- Root folder `/` : the RESTful API of the React Conf.
-- `dashboard/` folder : the control panel for admins of the React Conf ( using Create-React-App boilerplate ).
+- Root folder `/` :
+  - `dashboard/` folder : the control panel for admins of the React Conf ( using Create-React-App boilerplate ).
+  - `middleware/` folder : functions that execute during the lifecycle of a request to the Express server, containes `auth` function for authentification using JWT .
+  - `models/` folder : mongoose models provide an interface to the MongoDB database for creating, querying, updating and deleting documents.
+  - `routes/` folder : application’s endpoints (URIs) to respond to requests, contains a RESTful API of the React Conf.
+  - `UML Diagrams/` folder : UML Diagrams for better project description.
 
 ### Usage :
 
@@ -41,14 +45,15 @@
     - 2 main users :
       - **admin** : has All permissions
       - **readOnlyAdmin** : has Read Only permission
-  - Statistics :
+  - View statistics :
     - Time left until the start of the conference
-    - Number of attendees
+    - Number of speakers, sessions, attendees
     - ...etc
-  - CRUD operations for :
+  - Perform CRUD operations on :
+    - Conference information
     - Attendees
     - Speakers
-    - Sessions
+    - Schedule and Sessions
 
 ---
 
@@ -68,3 +73,7 @@
   - Redux
   - Formik
   - Axios
+
+- UML :
+
+  - Visual Paradigm Online
