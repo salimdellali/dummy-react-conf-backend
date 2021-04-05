@@ -69,6 +69,7 @@
 - Developing the Dashboard :
 
   - React.js
+  - React Router
   - Material UI
   - Redux
   - Formik
