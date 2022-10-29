@@ -1,8 +1,12 @@
 # Dummy React Conf Backend
 
-#### Linked repo :
+## IMPORTANT NOTE:
+- this project was built initially as a MERN Stack app, and hosted on heroku on the free tier
+- since heroku is shutting down their free tiers (or already did, depends on the time of reading this), I had to separate this project into a RESTful API, and a Dashboard, and host them on an alternative hosting (on onrender.com)
 
-[Dummy React Conf Website](https://github.com/salimdellali/dummy-react-conf-website)
+Please check the following repos:
+- [Dummy React Conf Dashboard](https://github.com/salimdellali/dummy-react-conf-dashboard)
+- [Dummy React Conf Server](https://github.com/salimdellali/dummy-react-conf-server)
 
 ---
 
@@ -23,7 +27,7 @@
 
 #### Project status :
 
-![badge](https://img.shields.io/badge/Project%20Status-Under%20Development-lightgray)
+![badge](https://img.shields.io/badge/Project%20Status-Deprecated-important)
 
 ---
 
